@@ -26,18 +26,18 @@ public class KNN {
             Collections.sort(testDist);
             int[] stat = new int[2];
             for (int i = 0; i<k; i++) {
-                stat[testDist.get(i).dot.lul]++;
+                stat[testDist.get(i).dot.part]++;
             }
             double kek = 0;
             if (stat[0]>stat[1]) {
                 for (int i = k-1; i>=0; i--) {
-                    if (testDist.get(i).dot.lul == 0) {
+                    if (testDist.get(i).dot.part == 0) {
                         kek = testDist.get(i).distance;
                     }
                 }
             } else {
                 for (int i = k-1; i>=0; i--) {
-                    if (testDist.get(i).dot.lul == 1) {
+                    if (testDist.get(i).dot.part == 1) {
                         kek = testDist.get(i).distance;
                     }
                 }
@@ -50,11 +50,17 @@ public class KNN {
     public static class Label{
         Dot dot;
         int[] stat;
+        int part;
         double distance;
 
         public Label(Dot dot, int[] stat, double distance) {
             this.dot = dot;
             this.stat = stat;
+            if (stat[0]>stat[1]) {
+                this.part = 0;
+            } else {
+                this.part = 1;
+            }
             this.distance = distance;
         }
     }

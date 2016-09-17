@@ -5,6 +5,7 @@ import java.util.Collections;
  * Created by Ilya239 on 17.09.2016.
  */
 public class KNN {
+    //TODO add more metrics
     double distance(Dot a, Dot b) {
         return Math.sqrt(Math.pow(a.x-b.x,2)+Math.pow(a.y-b.y,2));
     }

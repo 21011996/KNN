@@ -5,7 +5,7 @@ import java.util.Collections;
  * Created by Ilya239 on 17.09.2016.
  */
 public class Main {
-    static int k = 10;
+    static int k = 5;
     public static void main(String[] args) {
         ArrayList<Dot> tmp = new Reader().read("chips.txt");
         Collections.shuffle(tmp);
@@ -20,7 +20,6 @@ public class Main {
                     Math.min(i + part, tmp.size()))));
         }
         for (int i = 0; i<k; i++) {
-            ArrayList<Dot> test = new ArrayList<>(tmp.subList(i*part, (i+1)*part));
             ArrayList<KNN.Label> knn = KNN.classifyKNN(getTrain(i, partitions),partitions.get(i),5);
             for (KNN.Label label : knn) {
                 if (label.stat[0] > label.stat[1]){

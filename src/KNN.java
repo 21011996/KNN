@@ -5,9 +5,10 @@ import java.util.Collections;
  * Created by Ilya239 on 17.09.2016.
  */
 public class KNN {
-    //TODO add more metrics
     static double distance(Dot a, Dot b) {
+
         return Math.sqrt(Math.pow(a.x-b.x,2)+Math.pow(a.y-b.y,2));
+        //return Math.abs(a.x-b.x)+Math.abs(a.y-b.y);
     }
 
     static ArrayList<Pair> culcDist(Dot testPoint, ArrayList<Dot> trainData) {

@@ -3,6 +3,7 @@ import com.xeiam.xchart.ChartBuilder;
 import com.xeiam.xchart.StyleManager;
 import com.xeiam.xchart.SwingWrapper;
 
+import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class Draw {
             xData.add(point.x);
             yData.add(point.y);
         }
-        chart.addSeries(graphicName, xData, yData);
+        chart.addSeries(graphicName, xData, yData).setLineColor(new Color(0,0,0,0));
 
         return this;
     }

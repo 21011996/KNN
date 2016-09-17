@@ -6,11 +6,11 @@ import java.util.Collections;
  */
 public class KNN {
     //TODO add more metrics
-    double distance(Dot a, Dot b) {
+    static double distance(Dot a, Dot b) {
         return Math.sqrt(Math.pow(a.x-b.x,2)+Math.pow(a.y-b.y,2));
     }
 
-    ArrayList<Pair> culcDist(Dot testPoint, ArrayList<Dot> trainData) {
+    static ArrayList<Pair> culcDist(Dot testPoint, ArrayList<Dot> trainData) {
         ArrayList<Pair> answer = new ArrayList<Pair>();
         for (int i = 0; i< trainData.size(); i++) {
             answer.add(new Pair(trainData.get(i),distance(testPoint, trainData.get(i))));
@@ -18,7 +18,7 @@ public class KNN {
         return answer;
     }
 
-    ArrayList<Label> classifyKNN(ArrayList<Dot> trainData, ArrayList<Dot> testData, int k) {
+    public static ArrayList<Label> classifyKNN(ArrayList<Dot> trainData, ArrayList<Dot> testData, int k) {
         ArrayList<Label> testLables = new ArrayList<>();
         for (Dot testPoint : testData) {
             ArrayList<Pair> testDist = culcDist(testPoint, trainData);
@@ -27,22 +27,38 @@ public class KNN {
             for (int i = 0; i<k; i++) {
                 stat[testDist.get(i).dot.lul]++;
             }
-            testLables.add(new Label(testPoint, stat));
+            double kek = 0;
+            if (stat[0]>stat[1]) {
+                for (int i = k-1; i>=0; i--) {
+                    if (testDist.get(i).dot.lul == 0) {
+                        kek = testDist.get(i).distance;
+                    }
+                }
+            } else {
+                for (int i = k-1; i>=0; i--) {
+                    if (testDist.get(i).dot.lul == 1) {
+                        kek = testDist.get(i).distance;
+                    }
+                }
+            }
+            testLables.add(new Label(testPoint, stat, kek));
         }
         return testLables;
     }
 
-    public class Label{
+    public static class Label{
         Dot dot;
         int[] stat;
+        double distance;
 
-        public Label(Dot dot, int[] stat) {
+        public Label(Dot dot, int[] stat, double distance) {
             this.dot = dot;
             this.stat = stat;
+            this.distance = distance;
         }
     }
 
-    public class Pair implements Comparable<Pair>{
+    public static class Pair implements Comparable<Pair>{
         Dot dot;
         double distance;
 

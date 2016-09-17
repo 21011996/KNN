@@ -1,7 +1,5 @@
-import com.xeiam.xchart.Chart;
-import com.xeiam.xchart.ChartBuilder;
-import com.xeiam.xchart.StyleManager;
-import com.xeiam.xchart.SwingWrapper;
+import com.xeiam.xchart.*;
+import com.xeiam.xchart.internal.markers.Circle;
 
 import java.awt.*;
 import java.util.LinkedList;

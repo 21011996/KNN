@@ -4,11 +4,11 @@
 public class Dot {
     double x;
     double y;
-    int part;
+    int type;
 
-    Dot(double x, double y, int part) {
+    Dot(double x, double y, int type) {
         this.x = x;
         this.y = y;
-        this.part = part;
+        this.type = type;
     }
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
  */
 
 public class Reader {
-    public ArrayList<Dot> read(String file) {
+    ArrayList<Dot> read(String file) {
         ArrayList<Dot> dots = new ArrayList<>();
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));

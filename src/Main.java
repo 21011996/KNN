@@ -5,14 +5,15 @@ import java.util.Collections;
  * Created by Ilya239 on 17.09.2016.
  */
 public class Main {
-    private int foldNumber = 2;
-    private int KNN_k = 5;
+                                        //75.33,78.6
+    private static int foldNumber = 2; // 20,20
+    private static int KNN_k = 5; // 15,27
 
     public static void main(String[] args) {
-        new Main().run();
+        new Main().run(foldNumber, KNN_k);
     }
 
-    private void run() {
+    double run(int foldNumber, int KNN_k) {
         ArrayList<Dot> dataSet = new Reader().read("chips.txt");
         Collections.shuffle(dataSet);
 
@@ -27,7 +28,7 @@ public class Main {
         for (int i = 0; i < foldNumber; i++) {
             ArrayList<Dot> trainingSet = getTrainingSet(i, partitions);
             ArrayList<Dot> testSet = new ArrayList<>(partitions.get(i));
-            ArrayList<KNN.Label> knnResult = KNN.classifyKNN(trainingSet, testSet, KNN_k);
+            ArrayList<KNN.Label> knnResult = KNN.classifyKNN(trainingSet, testSet, partitionSize > KNN_k?KNN_k:partitionSize);
 
             int correctCount = 0;
             for (int j = 0; j < testSet.size(); j++) {
@@ -38,7 +39,7 @@ public class Main {
             accuracySum += (double) correctCount / testSet.size();
         }
 
-        System.out.println("Accuracy: " + (accuracySum / foldNumber));
+        //System.out.println("Accuracy: " + (accuracySum / foldNumber));
 
         ArrayList<Dot> dot0 = new ArrayList<>();
         ArrayList<Dot> dot1 = new ArrayList<>();
@@ -50,7 +51,9 @@ public class Main {
                 dot1.add(dot);
             }
         }
-        new Plot("x", "y").addGraphic(dot0, "dot0").addGraphic(dot1, "dot1").show();
+        //new Plot("x", "y").addGraphic(dot0, "dot0").addGraphic(dot1, "dot1").show();
+
+        return (accuracySum / foldNumber);
     }
 
     private ArrayList<Dot> getTrainingSet(int excludeNumber, ArrayList<ArrayList<Dot>> partitions) {

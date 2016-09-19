@@ -26,7 +26,7 @@ public class Plot {
             xData.add(point.x);
             yData.add(point.y);
         }
-        chart.addSeries(graphicName, xData, yData).setLineColor(new Color(0, 0, 0, 0));
+        chart.addSeries(graphicName, xData, yData).setLineColor(new Color(255, 255, 255, 0)).setMarker(SeriesMarker.CIRCLE);
 
         return this;
     }

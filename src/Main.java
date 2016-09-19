@@ -6,8 +6,8 @@ import java.util.Collections;
  */
 public class Main {
                                         //75.33,78.6
-    private static int foldNumber = 2; // 20,20
-    private static int KNN_k = 5; // 15,27
+    private static int foldNumber = 20; // 20,20
+    private static int KNN_k = 15; // 15,27
 
     public static void main(String[] args) {
         new Main().run(foldNumber, KNN_k);
@@ -15,6 +15,7 @@ public class Main {
 
     double run(int foldNumber, int KNN_k) {
         ArrayList<Dot> dataSet = new Reader().read("chips.txt");
+
         Collections.shuffle(dataSet);
 
         int partitionSize = dataSet.size() / foldNumber;
@@ -39,7 +40,7 @@ public class Main {
             accuracySum += (double) correctCount / testSet.size();
         }
 
-        //System.out.println("Accuracy: " + (accuracySum / foldNumber));
+        System.out.println("Accuracy: " + (accuracySum / foldNumber));
 
         ArrayList<Dot> dot0 = new ArrayList<>();
         ArrayList<Dot> dot1 = new ArrayList<>();
@@ -51,7 +52,21 @@ public class Main {
                 dot1.add(dot);
             }
         }
-        //new Plot("x", "y").addGraphic(dot0, "dot0").addGraphic(dot1, "dot1").show();
+        ArrayList<Dot> dot2 = new ArrayList<>();
+        ArrayList<Dot> dot3 = new ArrayList<>();
+        for (double x = -1; x<1.2; x+=0.008) {
+            for (double y = -1; y<1.2; y+=0.008) {
+                ArrayList<Dot> tmp = new ArrayList<Dot>();
+                tmp.add(new Dot(x,y,1));
+                ArrayList<KNN.Label> tmp2 = KNN.classifyKNN(dataSet, tmp, KNN_k);
+                if (tmp2.get(0).type == 0) {
+                    dot2.add(new Dot(x,y,0));
+                } else {
+                    dot3.add(new Dot(x,y,1));
+                }
+            }
+        }
+        new Plot("x", "y").addGraphic(dot3, "dot0").addGraphic(dot2, "dot1").addGraphic(dot0, "dot2").addGraphic(dot1, "dot3").show();
 
         return (accuracySum / foldNumber);
     }

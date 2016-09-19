@@ -6,8 +6,8 @@ import java.util.Collections;
  */
 public class Main {
                                         //75.33,78.6
-    private static int foldNumber = 20; // 20,20
-    private static int KNN_k = 15; // 15,27
+    private static int foldNumber = 10; // 10,10
+    private static int KNN_k = 5; // 5
 
     public static void main(String[] args) {
         new Main().run(foldNumber, KNN_k);

@@ -13,7 +13,7 @@ public class Dot {
         this.type = type;
     }
 
-    Dot(double x, double y, double x, int type) {
+    Dot(double x, double y, double z, int type) {
         this.x = x;
         this.y = y;
         this.z = z;

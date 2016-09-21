@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
  */
 class KNN {
     private static double distance(Dot a, Dot b) {
-        return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
-        //return Math.abs(a.x-b.x)+Math.abs(a.y-b.y);
+        return Math.sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y) + (a.z - b.z) * (a.z - b.z));
+        //return Math.abs(a.x - b.x) + Math.abs(a.y - b.y) + Math.abs(a.z - b.z);
     }
 
     private static ArrayList<Pair> calculateDistances(Dot testPoint, ArrayList<Dot> trainData) {
